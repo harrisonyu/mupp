@@ -32,8 +32,8 @@
     %tr                 
       %th id:    
       %th Location Name:
-      %th Location Longitude:
-      %th Location Latitude:
+      %th Longitude:
+      %th Latitude:
       %th Delete
   %tbody
     - @locations.each do |l|
@@ -56,8 +56,8 @@
     %tr             
       %th id:  
       %th Song Name:
-      %th Song Link:
-      %th Song Lyrics:
+      %th Link:
+      %th Lyrics:
       %th Delete
   %tbody
     - @songs.each do |s|
@@ -89,11 +89,11 @@
         %td 
           = r.id
         %td 
+          = r.relationship
+        %td 
           = Artist.find_by_id(r.artistID).artistName
         %td 
           = Location.find_by_id(r.locationID).locationName
-        %td 
-          = r.relationship
         %td
           = link_to "Delete", delete_reason_path(r.id), class: "btn"
   %br
