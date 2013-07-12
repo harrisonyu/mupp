@@ -1,132 +1,40 @@
 
-/#########################################
-/#           YOUTUBE                     #
-/#########################################
-/
-  You are free to copy and use this sample in accordance with the terms of the
-  Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
 !!! Strict
 %html{:xmlns => "http://www.w3.org/1999/xhtml"}
   %head
+    %h1 MUPP
     %meta{:content => "text/html; charset=utf-8", "http-equiv" => "content-type"}/
-    %title YouTube Player API Sample
-    :css
-      #videoDiv { 
-      margin-right: 3px;
-      }
-      #videoInfo {
-      margin-left: 3px;
-      }
     / control bar
-    %link{:href => "http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css", :rel => "stylesheet"}/
-    %script{:src => "http://code.jquery.com/jquery-1.9.1.js"}
-    %script{:src => "http://code.jquery.com/ui/1.10.3/jquery-ui.js"}
-    %link{:href => "/resources/demos/style.css", :rel => "stylesheet"}/
-    
-    :css
-      #toolbar {
-        padding: 4px;
-        display: inline-block;
-      }
-      /* support: IE7 */
-      *+html #toolbar {
-        display: inline;
-      }
-          :javascript
-      $(function() {
-        $( "#beginning" ).button({
-          text: false,
-          icons: {
-            primary: "ui-icon-seek-start"
-          }
-        });
-        $( "#rewind" ).button({
-          text: false,
-          icons: {
-            primary: "ui-icon-seek-prev"
-          }
-        });
-        $( "#play" ).button({
-          text: false,
-          icons: {
-            primary: "ui-icon-play"
-          }
-        })
-        .click(function() {
-          var options;
-          if ( $( this ).text() === "play" ) {
-            options = {
-              label: "pause",
-              icons: {
-                primary: "ui-icon-pause"
-              }
-            };
-          } else {
-            options = {
-              label: "play",
-              icons: {
-                primary: "ui-icon-play"
-              }
-            };
-          }
-          $( this ).button( "option", options );
-        });
-        $( "#stop" ).button({
-          text: false,
-          icons: {
-            primary: "ui-icon-stop"
-          }
-        })
-        .click(function() {
-          $( "#play" ).button( "option", {
-            label: "play",
-            icons: {
-              primary: "ui-icon-play"
-            }
-          });
-        });
-        $( "#forward" ).button({
-          text: false,
-          icons: {
-            primary: "ui-icon-seek-next"
-          }
-        });
-        $( "#end" ).button({
-          text: false,
-          icons: {
-            primary: "ui-icon-seek-end"
-          }
-        });
-        $( "#shuffle" ).button();
-        $( "#repeat" ).buttonset();
-      });
-    / end control bar
+    %stylesheet_link_tag
 
-    / progress bar
-    %link{:href => "http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css", :rel => "stylesheet"}/
+    /this is a link to the actual style sheet from jqueryui
+    /%link{:href => "http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css", :rel => "stylesheet"}/
     %script{:src => "http://code.jquery.com/jquery-1.9.1.js"}
     %script{:src => "http://code.jquery.com/ui/1.10.3/jquery-ui.js"}
-    %link{:href => "/resources/demos/style.css", :rel => "stylesheet"}/
-    
-    / end progress bar
+      
 
     / chrome player script
     %script{:src => "//www.google.com/jsapi", :type => "text/javascript"}
+      
     :javascript
+
+      $(function() {
+        $( "#accordion" ).accordion({
+          heightStyle: "content"
+        });
+      });
+
+
       google.load("swfobject", "2.1");
-    :javascript
-      /*
-       * Chromeless player has no controls.
-       */
 
       // update the progress bar
       function updateProgressBar(progress)
       {
         $(function() {
-        $( "#progressbar" ).progressbar({
-          value: progress
+          $( "#progressbar" ).progressbar({
+            value: progress
+          });
         });
-      });
       }
       
 
@@ -142,6 +50,13 @@
       
       // This function is called when the player changes state
       function onPlayerStateChange(newState) {
+        if(newState == 1)
+          newState = "playing";
+        else if(newState == 2)
+          newState = "paused";
+        else if(newState == -1)
+          newState = "audio loaded";
+
         updateHTML("playerState", newState);
       }
       
@@ -150,12 +65,12 @@
         // Also check that at least one function exists since when IE unloads the
         // page, it will destroy the SWF before clearing the interval.
         if(ytplayer && ytplayer.getDuration) {
-          updateHTML("videoDuration", ytplayer.getDuration());
-          updateHTML("videoCurrentTime", ytplayer.getCurrentTime());
-          updateHTML("bytesTotal", ytplayer.getVideoBytesTotal());
-          updateHTML("startBytes", ytplayer.getVideoStartBytes());
-          updateHTML("bytesLoaded", ytplayer.getVideoBytesLoaded());
-          updateHTML("volume", ytplayer.getVolume());
+          //updateHTML("videoDuration", ytplayer.getDuration());
+          //updateHTML("videoCurrentTime", ytplayer.getCurrentTime());
+          //updateHTML("bytesTotal", ytplayer.getVideoBytesTotal());
+          //updateHTML("startBytes", ytplayer.getVideoStartBytes());
+          //updateHTML("bytesLoaded", ytplayer.getVideoBytesLoaded());
+          //updateHTML("volume", ytplayer.getVolume());
           if(ytplayer.getCurrentTime() > 0)
           {
              updateProgressBar((ytplayer.getCurrentTime() / ytplayer.getDuration()) * 100);
@@ -232,24 +147,13 @@
   %body{:style => "font-family: Arial;border: 0 none;"}
 
     #progressbar
-
     / control bar stuff
     #toolbar.ui-widget-header.ui-corner-all
-      %button#beginning go to beginning
-      %button#rewind rewind
-      %button#play{:href => "javascript:void(0);", :onclick => "playVideo();"} play
-      %button#stop{:href => "javascript:void(0);", :onclick => "pauseVideo();"} pause
-      %button#forward fast forward
-      //%button#end go to end
-      %input#shuffle{:type => "checkbox"}/
-      %label{:for => "shuffle"} Shuffle
-      %span#repeat
-        %input#repeat0{:checked => "checked", :name => "repeat", :type => "radio"}/
-        %label{:for => "repeat0"} No Repeat
-        %input#repeat1{:name => "repeat", :type => "radio"}/
-        %label{:for => "repeat1"} Once
-        %input#repeatall{:name => "repeat", :type => "radio"}/
-        %label{:for => "repeatall"} All
+      %button#play{:href => "javascript:void(0);", :onclick => "playVideo();"}
+      %button#pause{:href => "javascript:void(0);", :onclick => "pauseVideo();"}
+      %button#next
+      %button next artist
+      
     / end control bar
 
     %table
@@ -261,55 +165,8 @@
             %p
               Player state:
               %span#playerState --
-            %p
-              Current Time:
-              %span#videoCurrentTime --:--
-              | Duration:
-              %span#videoDuration --:--
-            %p
-              Bytes Total:
-              %span#bytesTotal --
-              | Start Bytes:
-              %span#startBytes --
-              | Bytes Loaded:
-              %span#bytesLoaded --
-            %p
-              Controls:
-              %a{:href => "javascript:void(0);", :onclick => "playVideo();"} Play
-              |
-              %a{:href => "javascript:void(0);", :onclick => "pauseVideo();"} Pause
-              |
-              %a{:href => "javascript:void(0);", :onclick => "muteVideo();"} Mute
-              |
-              %a{:href => "javascript:void(0);", :onclick => "unMuteVideo();"} Unmute
-            %p
-              %input#volumeSetting{:size => "3", :type => "text"}>/
-              \ 
-              %a{:href => "javascript:void(0)", :onclick => "setVideoVolume();"} <- Set Volume
-              | Volume:
-              %span#volume --
-​
+            
 
-/#########################################
-/#           ACCORDIAN                   #
-/#########################################
-
-<!doctype html>
-%html{:lang => "en"}
-  %head
-    %meta{:charset => "utf-8"}/
-    %title jQuery UI Accordion - No auto height
-    %link{:href => "http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css", :rel => "stylesheet"}/
-    %script{:src => "http://code.jquery.com/jquery-1.9.1.js"}
-    %script{:src => "http://code.jquery.com/ui/1.10.3/jquery-ui.js"}
-    %link{:href => "/resources/demos/style.css", :rel => "stylesheet"}/
-    :javascript
-      $(function() {
-      $( "#accordion" ).accordion({
-      heightStyle: "content"
-      });
-      });
-  %body
     #accordion
       %h3 Lyrics
       %div
@@ -328,3 +185,4 @@
           %li List item
           %li List item
           %li List item
+​
