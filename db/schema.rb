@@ -11,12 +11,30 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130709003459) do
+ActiveRecord::Schema.define(:version => 20130712025232) do
 
   create_table "artists", :force => true do |t|
-    t.string "name"
-    t.string "birthPlaceCity"
-    t.string "birthPlaceState"
+    t.string "biography"
+    t.string "artistName"
+  end
+
+  create_table "locations", :force => true do |t|
+    t.float  "longitude"
+    t.float  "latitude"
+    t.string "locationName"
+  end
+
+  create_table "reasons", :force => true do |t|
+    t.integer "artistID"
+    t.integer "locationID"
+    t.string  "relationship"
+  end
+
+  create_table "songs", :force => true do |t|
+    t.string  "songName"
+    t.string  "lyrics"
+    t.string  "link"
+    t.integer "artistID"
   end
 
 end

@@ -1,0 +1,6 @@
+= form_for @artist, :url => { :action => "create"}, :html => {:class => "nifty_form"} do |f|
+	Artist Name
+	= text_field_tag "artistName"
+	Biography
+	= text_field_tag "biography"
+	= f.submit "Create", :class => "btn btn-success"

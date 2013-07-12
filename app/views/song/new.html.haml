@@ -1,0 +1,10 @@
+= form_for @song, :url => { :action => "create"}, :html => {:class => "nifty_form"} do |f|
+	Song Name
+	= f.text_field :songName
+	Artist ID:
+	= text_field_tag "artistID"
+	= f.label :lyrics
+	= f.text_area :lyrics
+	= f.label :link
+	= f.text_field :link
+	= f.submit "Create", :class => "btn"

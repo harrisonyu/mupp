@@ -1,0 +1,101 @@
+%br
+= link_to "Create a new song", new_song_path, class: "btn btn-inverse"
+= link_to "Create a new location", new_location_path, class: "btn btn-inverse"
+= link_to "Create a new artist", new_artist_path, class: "btn btn-inverse"
+= link_to "Create a new reason", new_reason_path, class: "btn btn-inverse"
+%br
+%br
+
+%table.table.table-bordered
+  %thead
+    %tr             
+      %th id:        
+      %th Artist Name:
+      %th Biography:
+      %th Delete
+  %tbody
+    - @artists.each do |a|
+      %tr
+        %td 
+          = a.id
+        %td 
+          = a.artistName
+        %td 
+          = a.biography
+        %td
+          = link_to "Delete", delete_artist_path(a.id), class: "btn"
+  %br
+%br
+%br
+%table.table.table-bordered
+  %thead
+    %tr                 
+      %th id:    
+      %th Location Name:
+      %th Location Longitude:
+      %th Location Latitude:
+      %th Delete
+  %tbody
+    - @locations.each do |l|
+      %tr
+        %td 
+          = l.id
+        %td 
+          = l.locationName
+        %td 
+          = l.longitude
+        %td 
+          = l.latitude
+        %td
+          = link_to "Delete", delete_location_path(l.id), class: "btn"
+  %br
+%br
+%br
+%table.table.table-bordered
+  %thead
+    %tr             
+      %th id:  
+      %th Song Name:
+      %th Song Link:
+      %th Song Lyrics:
+      %th Delete
+  %tbody
+    - @songs.each do |s|
+      %tr
+        %td 
+          = s.id
+        %td 
+          = s.songName
+        %td 
+          = s.link
+        %td 
+          = simple_format(s.lyrics)
+        %td
+          = link_to "Delete", delete_song_path(s.id), class: "btn"
+  %br
+%br
+%br
+%table.table.table-bordered
+  %thead
+    %tr     
+      %th id:  
+      %th Reason:              
+      %th Artist Name:
+      %th Location Name:
+      %th Delete
+  %tbody
+    - @reasons.each do |r|
+      %tr
+        %td 
+          = r.id
+        %td 
+          = Artist.find_by_id(r.artistID).artistName
+        %td 
+          = Location.find_by_id(r.locationID).locationName
+        %td 
+          = r.relationship
+        %td
+          = link_to "Delete", delete_reason_path(r.id), class: "btn"
+  %br
+%br
+%br

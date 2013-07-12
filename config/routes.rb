@@ -1,6 +1,25 @@
 Mupp::Application.routes.draw do
 
-  root to: 'home#public'
+  root :to => 'home#public'
+
+  match '/home' => 'home#index', :as => :home
+
+  get   '/home/song/new' => 'song#new', :as => :new_song
+  post  '/home/song/create' => 'song#create', :as => :create_song
+  get   '/home/song/delete/:id' => 'song#delete', :as => :delete_song
+
+
+  get   '/home/location/new' => 'location#new', :as => :new_location
+  post  '/home/location/create' => 'location#create', :as => :create_location
+  get   '/home/location/delete/:id' => 'location#delete', :as => :delete_location
+
+  get   '/home/reason/new' => 'reason#new', :as => :new_reason
+  post  '/home/reason/create' => 'reason#create', :as => :create_reason
+  get   '/home/reason/delete/:id' => 'reason#delete', :as => :delete_reason
+
+  get   '/home/artist/new' => 'artist#new', :as => :new_artist
+  post  '/home/artist/create' => 'artist#create', :as => :create_artist
+  get   '/home/artist/delete/:id' => 'artist#delete', :as => :delete_artist
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
