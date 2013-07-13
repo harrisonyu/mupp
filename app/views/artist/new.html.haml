@@ -1,6 +1,8 @@
-= form_for @artist, :url => { :action => "create"}, :html => {:class => "nifty_form"} do |f|
-	Artist Name
+= form_tag create_artist_path, :method=>'post' do
+	Artist Name:
 	= text_field_tag "artistName"
-	Biography
-	= text_field_tag "biography"
-	= f.submit "Create", :class => "btn btn-success"
+	Biography:
+	= text_area_tag "biography"
+	= submit_tag "Create", :class => "btn"
+
+=link_to "scrape",lastfmscrape_artist_path, :class => "btn"

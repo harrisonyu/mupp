@@ -17,14 +17,12 @@ client.get(url, function(err, res, body) {
   				var summary = body.artist.bio.summary;
   				if (place) {
   					var writeThis = " START_ARTIST " + name + " ::: " + place + " ::: " + summary + " END_ARTIST\n";
-  					fs.appendFile('message.txt', writeThis, function (err) {
+  					fs.appendFile('artists.txt', writeThis, function (err) {
           				if (err) throw err;
           				console.log('appended ' + name);
         			});
   				}
   			}
   		}) (name));
-  	}
-  	
-  	
+  	}  	
 });
