@@ -1,10 +1,10 @@
-= form_for @song, :url => { :action => "create"}, :html => {:class => "nifty_form"} do |f|
+= form_tag create_song_path, :method=>'post' do
 	Song Name
-	= f.text_field :songName
+	= text_field_tag "songName"
 	Artist ID:
 	= text_field_tag "artistID"
-	= f.label :lyrics
-	= f.text_area :lyrics
-	= f.label :link
-	= f.text_field :link
-	= f.submit "Create", :class => "btn"
+	Lyrics:
+	= text_area_tag "lyrics"
+	Link:
+	= text_field_tag "link"
+	= submit_tag "Create", :class => "btn"

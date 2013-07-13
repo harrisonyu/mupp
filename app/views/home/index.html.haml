@@ -1,8 +1,8 @@
 %br
-= link_to "Create a new song", new_song_path, class: "btn btn-inverse"
-= link_to "Create a new location", new_location_path, class: "btn btn-inverse"
-= link_to "Create a new artist", new_artist_path, class: "btn btn-inverse"
-= link_to "Create a new reason", new_reason_path, class: "btn btn-inverse"
+= link_to "Create a new song", new_song_path, class: "btn"
+= link_to "Create a new location", new_location_path, class: "btn"
+= link_to "Create a new artist", new_artist_path, class: "btn"
+= link_to "Create a new reason", new_reason_path, class: "btn"
 %br
 %br
 
@@ -21,7 +21,7 @@
         %td 
           = a.artistName
         %td 
-          = a.biography
+          = simple_format(a.biography)
         %td
           = link_to "Delete", delete_artist_path(a.id), class: "btn"
   %br
@@ -56,6 +56,7 @@
     %tr             
       %th id:  
       %th Song Name:
+      %th Artist Name:
       %th Link:
       %th Lyrics:
       %th Delete
@@ -66,6 +67,8 @@
           = s.id
         %td 
           = s.songName
+        %td
+          = Artist.find_by_id(s.artistID).artistName
         %td 
           = s.link
         %td 
@@ -89,7 +92,7 @@
         %td 
           = r.id
         %td 
-          = r.relationship
+          = simple_format(r.relationship)
         %td 
           = Artist.find_by_id(r.artistID).artistName
         %td 

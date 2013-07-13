@@ -5,17 +5,16 @@ class ArtistController < ApplicationController
 
 	def create
 		@id = params[:id]
-		@form = params[:artist]
 		@artist = Artist.new
-		@artist.artistName = params[:artistName]
-		@artist.biography = params[:biography]
+		@artist.artistName = params["artistName"]
+		@artist.biography = params["biography"]
 		@artist.save
 
 		redirect_to home_path and return
 	end
 
 	def lastfmscrape
-		result = Net::HTTP.get(URI.parse('http://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&limit=100&page=1&api_key=219013a75ea68365ea1396ab616923fb&format=json'))
+		result = Net::HTTP.get(URI.parse('http://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&limit=10&page=1&api_key=219013a75ea68365ea1396ab616923fb&format=json'))
 		artists_json = JSON::parse(result)
 		artists = artists_json["artists"]["artist"]
 

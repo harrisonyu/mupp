@@ -1,16 +1,16 @@
-class LocationController < ActionController::Base
+class LocationController < ApplicationController
   	def new
 		@location = Location.new
 	end
 
 	def create
 		@id = params[:id]
-		@form = params[:location]
 		@location = Location.new
-		@nameOfLocation = @form[:locationName]
-		@location.locationName = Geocoder.search(@nameOfLocation)[0].address
-		@location.longitude = Geocoder.search(@nameOfLocation)[0].longitude
-		@location.latitude = Geocoder.search(@nameOfLocation)[0].latitude
+		@nameOfLocation = params["locationName"]
+		@geocoderLocation = Geocoder.search(@nameOfLocation)[0]
+		@location.locationName = @geocoderLocation.address
+		@location.longitude = @geocoderLocation.longitude
+		@location.latitude = @geocoderLocation.latitude
 		@location.save
 		redirect_to home_path and return
 	end
@@ -32,19 +32,15 @@ class LocationController < ActionController::Base
 
 		# Wait until threads are done.
 		threads.each { |aThread|  aThread.join }
-	
-		locations.each do |x|
-			puts Geocoder.search(x)
-		end
 
-		#locations.each do |x|
-		# 	x = locations[0]
-		# 	newEntry = Location.new
-		# 	newEntry.locationName = Geocoder.search(x)[0].address
-		# 	newEntry.longitude = Geocoder.search(x)[0].longitude
-		# 	newEntry.latitude = Geocoder.search(x)[0].latitude
-		# 	newEntry.save
-		# #end
+		locations.each do |x|
+		 	newEntry = Location.new
+		 	@geocoderLocation = Geocoder.search(x)[0]
+		 	newEntry.locationName = @geocoderLocation.address
+		 	newEntry.longitude = @geocoderLocation.longitude
+		 	newEntry.latitude = @geocoderLocation.latitude
+		 	newEntry.save
+		end
 		redirect_to home_path and return
 	end
 
