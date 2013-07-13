@@ -1219,7 +1219,6 @@ button
   position: relative;
   left: 44%;
   
-
 }
 #play
 {
@@ -1239,6 +1238,15 @@ html
   background-size: 100% 100%;
   z-index: 0;
 }
+
+#logo
+{
+  width: 100px;
+  height: 60px;
+  background-size: 100% 100%;
+  background-image: url("logo.png");
+}
+
 body
 {
 }
@@ -1286,6 +1294,7 @@ select
   position: relative;
   border-left: 50%;
 }
+
 /*#bottom_fade
 {
   width: 500px;
