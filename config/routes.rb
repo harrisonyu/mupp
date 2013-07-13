@@ -2,7 +2,7 @@ Mupp::Application.routes.draw do
 
   root :to => 'home#public'
 
-  match '/home' => 'home#index', :as => :home
+  match '/database' => 'home#index', :as => :home
 
   get   '/home/song/new' => 'song#new', :as => :new_song
   post  '/home/song/create' => 'song#create', :as => :create_song

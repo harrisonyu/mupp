@@ -1,4 +1,7 @@
 class SongController < ApplicationController
+
+	http_basic_authenticate_with name: "muppghs", password: "hackfest"
+
 	def new
 		@song = Song.new
 	end

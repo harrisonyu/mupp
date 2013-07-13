@@ -1,4 +1,7 @@
 class LocationController < ApplicationController
+
+	http_basic_authenticate_with name: "muppghs", password: "hackfest"
+	
   	def new
 		@location = Location.new
 	end
