@@ -16,7 +16,6 @@ class ReasonController < ApplicationController
 		redirect_to home_path and return
 	end
 
-
 	def lastfmscrape
 		artists = Artist.all
 		threads = []
@@ -44,6 +43,15 @@ class ReasonController < ApplicationController
 			newEntry.locationID = x[1]
 			newEntry.save
 		end
+	end
+
+	def updateform
+	end
+	
+	def update
+		@id = params[:id]
+		@relationship = params["relationship"]
+		Reason.update(@id, :relationship => @relationship)
 		redirect_to home_path and return
 	end
 

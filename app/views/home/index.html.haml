@@ -85,6 +85,7 @@
       %th Reason:              
       %th Artist Name:
       %th Location Name:
+      %th Update Reason:
       %th Delete
   %tbody
     - @reasons.each do |r|
@@ -97,6 +98,8 @@
           = Artist.find_by_id(r.artistID).artistName
         %td 
           = Location.find_by_id(r.locationID).locationName
+        %td
+          = link_to "UpdateReason", updateform_reason_path(r.id), class: "btn"
         %td
           = link_to "Delete", delete_reason_path(r.id), class: "btn"
   %br
