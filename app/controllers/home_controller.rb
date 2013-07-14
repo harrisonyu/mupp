@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def public
-    @ip = "San Francisco, CA"
+    @ip = "San Fransico, CA"
     #request.remote_ip
     @geocoderLocation = Geocoder.search(@ip)[0]
     @locationLongitude = @geocoderLocation.longitude
@@ -12,6 +12,7 @@ class HomeController < ApplicationController
       @distance = (@locationLatitude-l.latitude)*(@locationLatitude-l.latitude)+(@locationLongitude-l.longitude)*(@locationLongitude-l.longitude)
       if @distance < @minimum_distance 
         @location = l.id
+        @minimum_distance = @distance
       end
     end
     @locationName = Location.find_by_id(@location).locationName
@@ -24,6 +25,7 @@ class HomeController < ApplicationController
     @songLyrics = Song.find_by_id(@currentlyPlayingSong.id).lyrics
     @songName = Song.find_by_id(@currentlyPlayingSong.id).songName
     @songLink = Song.find_by_id(@currentlyPlayingSong.id).link
+    @reason = @currentlyPlayingArtist.relationship
   end
   
   def index

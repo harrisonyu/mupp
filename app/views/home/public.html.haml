@@ -134,7 +134,8 @@
         ytplayer.addEventListener("onStateChange", "onPlayerStateChange");
         ytplayer.addEventListener("onError", "onPlayerError");
         //Load an initial video into the player
-        ytplayer.cueVideoById("nNs7NLwuHx0");
+        var link = "#{@songLink}"
+        ytplayer.cueVideoById(link);
       }
 
       // The "main method" of this sample. Called when someone clicks "Run".
@@ -185,10 +186,7 @@
 
     %div.centerc
       where:
-      %select
-        %option{:value=>"current"} current location
-        %option{:value=>"chicago"} Chicago
-        %option{:value=>"losangeles"} Los Angeles
+      /%select{'Location'}
       
     %br
     %br
@@ -198,19 +196,15 @@
     #accordion.no-border
       %h3.bar-nice-look.no-border Lyrics
       %div.text-background.no-border
-        %p <h1>Hello</h1>                                                                                         testmore lyrics              test
+        %p
+        = @locationName.class
+        = simple_format(@songLyrics)
       %h3.bar-nice-look.no-border Artist Bio
       %div.text-background.no-border
-        %p wikipedia?????
+        %p 
+        = simple_format(@biographyOfArtist)
       %h3.bar-nice-look.no-border Connection to city
       %div.text-background.no-border
-        %p   more stuff
-        %ul
-          %li List item
-          %li List item
-          %li List item
-          %li List item
-          %li List item
-          %li List item
-          %li List item
+        %p
+        = simple_format(@reason)
 ​
