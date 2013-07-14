@@ -1297,6 +1297,12 @@ select
   border-left: 50%;
 }
 
+td
+{
+  opacity: .85;
+  background-color: skyblue;
+}
+
 /*#bottom_fade
 {
   width: 500px;
