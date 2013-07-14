@@ -43,6 +43,7 @@ class ReasonController < ApplicationController
 			newEntry.locationID = x[1]
 			newEntry.save
 		end
+		redirect_to home_path and return
 	end
 
 	def updateform
