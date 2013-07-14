@@ -16,6 +16,16 @@ class ReasonController < ApplicationController
 		redirect_to home_path and return
 	end
 
+	def updateform
+
+	end
+	def update
+		@id = params[:id]
+		@relationship = params["relationship"]
+		Reason.update(@id, :relationship => @relationship)
+		redirect_to home_path and return
+	end
+
 	def delete
 		@id = params[:id]
 		@reason = Reason.find_by_id(@id)

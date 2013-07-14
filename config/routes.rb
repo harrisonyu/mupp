@@ -16,6 +16,8 @@ Mupp::Application.routes.draw do
   get   '/home/reason/new' => 'reason#new', :as => :new_reason
   post  '/home/reason/create' => 'reason#create', :as => :create_reason
   get   '/home/reason/delete/:id' => 'reason#delete', :as => :delete_reason
+  put   '/home/reason/update/:id' => 'reason#update', :as => :update_reason
+  get   '/home/reason/updateform/:id' => 'reason#updateform', :as => :updateform_reason
 
   get   '/home/artist/new' => 'artist#new', :as => :new_artist
   post  '/home/artist/create' => 'artist#create', :as => :create_artist
