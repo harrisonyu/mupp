@@ -4,6 +4,8 @@ class ReasonController < ApplicationController
 
     def new
     @reason = Reason.new
+    @artists = Artist.all
+    @locations = Location.all
   end
 
   def create

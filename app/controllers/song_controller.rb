@@ -5,7 +5,7 @@ class SongController < ApplicationController
 	def new
 		@song = Song.new
 	end
-
+	
 	def create
 		@id = params[:id]
 		@song = Song.new
