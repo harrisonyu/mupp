@@ -1,7 +1,7 @@
-class CreateTable < ActiveRecord::Migration
+class CreateTables < ActiveRecord::Migration
   def change
     create_table :artists do |t|
-      t.string :biography
+      t.text :biography
       t.string :artistName
     end
 
@@ -14,12 +14,12 @@ class CreateTable < ActiveRecord::Migration
     create_table :reasons do |t|
       t.integer :artistID
       t.integer :locationID
-      t.string  :relationship
+      t.text  :relationship
     end
 
     create_table :songs do |t|
       t.string  :songName
-      t.string  :lyrics
+      t.text  :lyrics
       t.string  :link
       t.integer :artistID
     end

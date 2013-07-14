@@ -11,10 +11,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130714001854) do
+ActiveRecord::Schema.define(:version => 20130714015801) do
 
   create_table "artists", :force => true do |t|
-    t.string "biography"
+    t.text   "biography"
     t.string "artistName"
   end
 
@@ -27,12 +27,12 @@ ActiveRecord::Schema.define(:version => 20130714001854) do
   create_table "reasons", :force => true do |t|
     t.integer "artistID"
     t.integer "locationID"
-    t.string  "relationship"
+    t.text    "relationship"
   end
 
   create_table "songs", :force => true do |t|
     t.string  "songName"
-    t.string  "lyrics"
+    t.text    "lyrics"
     t.string  "link"
     t.integer "artistID"
   end
