@@ -1211,6 +1211,8 @@ button
   background-color: aliceblue;
   background-size: 100% 100%;
   border-radius: 50px;
+  width:40px;
+  height:40px;
 }
 
 #toolbar
