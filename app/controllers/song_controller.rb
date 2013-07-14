@@ -1,6 +1,5 @@
 class SongController < ApplicationController
 
-  require 'nokogiri'
   require 'open-uri'
 
   http_basic_authenticate_with name: "muppghs", password: "hackfest"
@@ -63,4 +62,5 @@ class SongController < ApplicationController
     @song.destroy
     redirect_to home_path and return
   end
+
 end

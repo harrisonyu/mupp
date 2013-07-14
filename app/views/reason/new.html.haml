@@ -8,3 +8,30 @@
   = submit_tag "Create", :class => "btn"
 
 =link_to "scrape", lastfmscrape_reason_path, :class => "btn"
+
+%table.table.table-bordered
+  %thead
+    %tr             
+      %th id:        
+      %th Artist Name:
+  %tbody
+    - @artists.each do |a|
+      %tr
+        %td 
+          = a.id
+        %td 
+          = a.artistName
+%br
+%br
+%table.table.table-bordered
+  %thead
+    %tr                 
+      %th id:    
+      %th Location Name:
+  %tbody
+    - @locations.each do |l|
+      %tr
+        %td 
+          = l.id
+        %td 
+          = l.locationName

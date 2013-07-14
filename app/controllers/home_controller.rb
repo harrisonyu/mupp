@@ -1,11 +1,29 @@
 class HomeController < ApplicationController
   def public
-    @city = request.location.city
-    @latitude = request.location.latitude
-    @longitude = request.location.longitude
-    @country = request.location.country_code
-    @ip = request.remote_ip
-    @test = Geocoder.search("Kansas City. MO")[0].longitude
+    @ip = "San Francisco, CA"
+    #request.remote_ip
+    @geocoderLocation = Geocoder.search(@ip)[0]
+    @locationLongitude = @geocoderLocation.longitude
+    @locationLatitude = @geocoderLocation.latitude
+    @minimum_distance = (@locationLatitude-Location.first.latitude)*(@locationLatitude-Location.first.latitude)+(@locationLongitude-Location.first.longitude)*(@locationLongitude-Location.first.longitude)
+    @location = 1
+    @locationDB = Location.all
+    @locationDB.each do |l|
+      @distance = (@locationLatitude-l.latitude)*(@locationLatitude-l.latitude)+(@locationLongitude-l.longitude)*(@locationLongitude-l.longitude)
+      if @distance < @minimum_distance 
+        @location = l.id
+      end
+    end
+    @locationName = Location.find_by_id(@location).locationName
+    @listOfArtists = Reason.find(:all, :conditions => ['locationID =?', @location])
+    @currentlyPlayingArtist = @listOfArtists.sample(1)[0]
+    @nameOfArtist = Artist.find_by_id(@currentlyPlayingArtist.artistID).artistName
+    @biographyOfArtist = Artist.find_by_id(@currentlyPlayingArtist.artistID).biography
+    @listOfSongs = Song.find(:all, :conditions => ['artistID =?', @currentlyPlayingArtist.artistID])
+    @currentlyPlayingSong = @listOfSongs.sample(1)[0]
+    @songLyrics = Song.find_by_id(@currentlyPlayingSong.id).lyrics
+    @songName = Song.find_by_id(@currentlyPlayingSong.id).songName
+    @songLink = Song.find_by_id(@currentlyPlayingSong.id).link
   end
   
   def index
