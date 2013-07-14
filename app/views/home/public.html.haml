@@ -1,7 +1,8 @@
 !!! Strict
 %html#road{:xmlns => "http://www.w3.org/1999/xhtml"}
   %head
-    %h1 MUPP
+    #logo
+
     %meta{:content => "text/html; charset=utf-8", "http-equiv" => "content-type"}/
     / control bar
     %stylesheet_link_tag
@@ -154,6 +155,8 @@
       google.setOnLoadCallback(_run);
     /end chrome player script
   %body{:style => "font-family: Arial;border: 0 none;"}
+
+    %br
 
     #progressbar
     / control bar stuff
