@@ -6,6 +6,7 @@ Mupp::Application.routes.draw do
 
   get   '/home/song/new' => 'song#new', :as => :new_song
   post  '/home/song/create' => 'song#create', :as => :create_song
+  get   '/home/song/lastfmscrape' => 'song#lastfmscrape', :as => :lastfmscrape_song
   get   '/home/song/delete/:id' => 'song#delete', :as => :delete_song
 
   get   '/home/location/new' => 'location#new', :as => :new_location
