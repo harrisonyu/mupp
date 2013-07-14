@@ -1,8 +1,8 @@
 = form_tag create_artist_path, :method=>'post' do
-	Artist Name:
-	= text_field_tag "artistName"
-	Biography:
-	= text_area_tag "biography"
-	= submit_tag "Create", :class => "btn"
+  Artist Name:
+  = text_field_tag "artistName"
+  Biography:
+  = text_area_tag "biography"
+  = submit_tag "Create", :class => "btn"
 
 =link_to "scrape",lastfmscrape_artist_path, :class => "btn"

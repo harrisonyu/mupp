@@ -1,10 +1,10 @@
 = form_tag create_reason_path, :method=>'post' do
-	Artist ID
-	= text_field_tag "artistID"
-	Location ID:
-	= text_field_tag "locationID"
-	Reason:
-	= text_area_tag "relationship"
-	= submit_tag "Create", :class => "btn"
+  Artist ID
+  = text_field_tag "artistID"
+  Location ID:
+  = text_field_tag "locationID"
+  Reason:
+  = text_area_tag "relationship"
+  = submit_tag "Create", :class => "btn"
 
 =link_to "scrape", lastfmscrape_reason_path, :class => "btn"
