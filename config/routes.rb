@@ -25,6 +25,8 @@ Mupp::Application.routes.draw do
   post  '/home/artist/create' => 'artist#create', :as => :create_artist
   get   '/home/artist/lastfmscrape' => 'artist#lastfmscrape', :as => :lastfmscrape_artist
   get   '/home/artist/delete/:id' => 'artist#delete', :as => :delete_artist
+
+  post  '/home/selectLocation' => 'home#selectLocation', :as => :selectLocation_home
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

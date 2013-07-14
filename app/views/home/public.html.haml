@@ -153,6 +153,14 @@
         loadPlayer();
         updateProgressBar(0);
       }
+
+      function changeFunc() {
+        var selectBox = document.getElementById("selectBox");
+        var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+
+        alert(selectedValue);
+      }
+
       google.setOnLoadCallback(_run);
     /end chrome player script
 
@@ -179,26 +187,29 @@
             %p
               Player state:
               %span#playerState --
+      %tr 
+      = @nameOfArtist
 
 
     %br
     %br
 
     %div.centerc
-      where:
-      = cities = ["new york", "los angeles"]
-      %select{:cities}
-      
+    
+    =form_tag selectLocation_home_path, :method => 'post' do
+      =select_tag("selectedLocation", "<option>My Location</option> <option>Chicago, IL</option> <option> San Francisco, CA </option>".html_safe, include_blank: true)
+      =submit_tag "Select Location", :class => "btn"
     %br
     %br
     %br
     %br
 
+    = $ip
+
     #accordion.no-border
       %h3.bar-nice-look.no-border Lyrics
       %div.text-background.no-border
         %p
-        = @locationName.class
         = simple_format(@songLyrics)
       %h3.bar-nice-look.no-border Artist Bio
       %div.text-background.no-border
@@ -208,4 +219,3 @@
       %div.text-background.no-border
         %p
         = simple_format(@reason)
-​

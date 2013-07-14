@@ -1,8 +1,7 @@
 class HomeController < ApplicationController
+  $ip = "San Fransico, CA"
   def public
-    @ip = "San Fransico, CA"
-    #request.remote_ip
-    @geocoderLocation = Geocoder.search(@ip)[0]
+    @geocoderLocation = Geocoder.search($ip)[0]
     @locationLongitude = @geocoderLocation.longitude
     @locationLatitude = @geocoderLocation.latitude
     @minimum_distance = (@locationLatitude-Location.first.latitude)*(@locationLatitude-Location.first.latitude)+(@locationLongitude-Location.first.longitude)*(@locationLongitude-Location.first.longitude)
@@ -33,5 +32,17 @@ class HomeController < ApplicationController
     @locations = Location.all
     @reasons = Reason.all
     @artists = Artist.all
+  end
+
+  def selectLocation
+    if params["selectedLocation"] == ""
+      redirect_to root_path and return
+    end
+    if params["selectedLocation"] == "My Location"
+      $ip = "San Francisco"#request.remote_ip
+    else
+      $ip = params["selectedLocation"]
+    end
+    redirect_to root_path and return
   end
 end
