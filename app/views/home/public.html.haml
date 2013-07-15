@@ -145,6 +145,7 @@
         {
           playVideo();
         }
+        $("#ytPlayer").css("zIndex",-1)
       }
 
       // The "main method" of this sample. Called when someone clicks "Run".
@@ -156,7 +157,7 @@
         // All of the magic handled by SWFObject (http://code.google.com/p/swfobject/)
         swfobject.embedSWF("http://www.youtube.com/apiplayer?" +
          "version=3&enablejsapi=1&playerapiid=player1", 
-         "videoDiv", "1", "1", "9", null, null, params, atts);
+         "videoDiv", "250", "250", "9", null, null, params, atts);
       }
       function _run() {
         loadPlayer();
@@ -229,6 +230,7 @@
 
 #videoDiv Loading...
 
-number of songs played
-=$numOfPlays
+%h6
+  Total number of songs played
+  =$numOfPlays
         
