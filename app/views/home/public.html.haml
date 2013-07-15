@@ -85,6 +85,10 @@
           {
              updateProgressBar((ytplayer.getCurrentTime() / ytplayer.getDuration()) * 100);
           }
+          if(ytplayer.getCurrentTime() > 0 && ytplayer.getCurrentTime() == ytplayer.getDuration())
+          {
+            nextVideo();
+          }
         }
       }
       
@@ -136,6 +140,7 @@
         //Load an initial video into the player
         var link = "#{@songLink}"
         ytplayer.cueVideoById(link);
+        playVideo();
       }
 
       // The "main method" of this sample. Called when someone clicks "Run".
@@ -154,11 +159,9 @@
         updateProgressBar(0);
       }
 
-      function changeFunc() {
-        var selectBox = document.getElementById("selectBox");
-        var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-
-        alert(selectedValue);
+      function nextVideo()
+      {
+        location.reload();
       }
 
       google.setOnLoadCallback(_run);
@@ -170,52 +173,54 @@
 
     #progressbar
     / control bar stuff
-    #toolbar.ui-widget-header.ui-corner-all.bar-nice-look.center-play-bar
-      %button#play{:href => "javascript:void(0);", :onclick => "playVideo();"}
-      %button#pause{:href => "javascript:void(0);", :onclick => "pauseVideo();"}
-      %button#next
-      /%button next artist
+    / #toolbar.ui-widget-header.ui-corner-all.bar-nice-look
+    /   %button#play{:href => "javascript:void(0);", :onclick => "playVideo();"}
+    /   %button#pause{:href => "javascript:void(0);", :onclick => "pauseVideo();"}
+    /   %button#next
+    /   /%button next artist
       
     / end control bar
 
-    %table.centerc
-      %tr
-        %td
-          #videoDiv Loading...
-        %td{:valign => "top"}
-          #videoInfo
-            %p
-              Player state:
-              %span#playerState --
-      %tr 
-      = @nameOfArtist
-
-
-    %br
     %br
 
-    %div.centerc
+    #info.bar-nice-look
+      %button#play{:href => "javascript:void(0);", :onclick => "playVideo();"}
+      %button#pause{:href => "javascript:void(0);", :onclick => "pauseVideo();"}
+      %button#next{:href => "javascript:void(0);", :onclick => "nextVideo();"}
+      %hr
+        = @nameOfArtist
+      %hr
+        = @songName
+      %hr
+      #videoInfo
+        %p
+          Player state:
+          %span#playerState --
     
-    =form_tag selectLocation_home_path, :method => 'post' do
-      =select_tag("selectedLocation", "<option>My Location</option> <option>Chicago, IL</option> <option> San Francisco, CA </option>".html_safe, include_blank: true)
-      =submit_tag "Select Location", :class => "btn"
+    #dropdown
+      =form_tag selectLocation_home_path, :method => 'post' do
+        =select_tag("selectedLocation", "<option>My Location</option> <option>Chicago, IL</option> <option> San Francisco, CA </option>".html_safe, include_blank: true)
+        =submit_tag "Select Location", :class => "btn"
     %br
     %br
     %br
     %br
-
-    = $ip
 
     #accordion.no-border
-      %h3.bar-nice-look.no-border Lyrics
+      %h3.bar-nice-look.no-border
+        Why is this song playing?
+
       %div.text-background.no-border
         %p
-        = simple_format(@songLyrics)
+        = simple_format(@reason)
       %h3.bar-nice-look.no-border Artist Bio
       %div.text-background.no-border
         %p 
         = simple_format(@biographyOfArtist)
-      %h3.bar-nice-look.no-border Connection to city
+      %h3.bar-nice-look.no-border Lyrics
       %div.text-background.no-border
         %p
-        = simple_format(@reason)
+        = simple_format(@songLyrics)
+
+#videoDiv Loading...
+        

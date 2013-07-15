@@ -1268,11 +1268,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f9ff', end
 
 }
 
-.centerc
-{
-  margin-right: auto;
-  margin-left: auto;
-}
 .text-background
 {
 background: -moz-linear-gradient(top,  rgba(237,237,237,0) 0%, rgba(237,237,237,0.8) 2%, rgba(237,237,237,0.86) 7%, rgba(240,240,240,1) 19%, rgba(253,253,253,1) 81%, rgba(255,255,255,0.88) 91%, rgba(255,255,255,0.8) 97%, rgba(255,255,255,0) 100%); /* FF3.6+ */
@@ -1303,13 +1298,19 @@ td
   background-color: skyblue;
 }
 
-/*#bottom_fade
+#info
 {
-  width: 500px;
-  height: 100%;
-  z-index: 0;
-  position: fixed;
-  top: 0px;
-  background: url("bottom-fade.png") bottom center no-repeat;
-  background-size: 100% 100%;
-}*/
+  border-radius: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 15%;
+  height: auto;
+  line-height: 20px;
+  text-align: center;
+}
+#dropdown
+{
+  width: 20%;
+  margin-left: auto;
+  margin-right: auto;
+}

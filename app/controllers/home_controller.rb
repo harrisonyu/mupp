@@ -1,5 +1,7 @@
 class HomeController < ApplicationController
+  $lastSongId = 0
   $ip = "San Fransico, CA"
+  $autoPlay = false
   def public
     @geocoderLocation = Geocoder.search($ip)[0]
     @locationLongitude = @geocoderLocation.longitude
@@ -19,12 +21,14 @@ class HomeController < ApplicationController
     @currentlyPlayingArtist = @listOfArtists.sample(1)[0]
     @nameOfArtist = Artist.find_by_id(@currentlyPlayingArtist.artistID).artistName
     @biographyOfArtist = Artist.find_by_id(@currentlyPlayingArtist.artistID).biography
-    @listOfSongs = Song.find(:all, :conditions => ['artistID =?', @currentlyPlayingArtist.artistID])
+    @listOfSongs = Song.find(:all, :conditions => ['artistID =? AND id !=?', @currentlyPlayingArtist.artistID, $lastSongId])
     @currentlyPlayingSong = @listOfSongs.sample(1)[0]
+    $lastSongId = @currentlyPlayingSong.id
     @songLyrics = Song.find_by_id(@currentlyPlayingSong.id).lyrics
     @songName = Song.find_by_id(@currentlyPlayingSong.id).songName
     @songLink = Song.find_by_id(@currentlyPlayingSong.id).link
     @reason = @currentlyPlayingArtist.relationship
+    $autoPlay = true
   end
   
   def index
