@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   $lastSongId = 0
   $ip = "San Fransico, CA"
-  $autoPlay = false
+  $numOfPlays = -1
   def public
     @geocoderLocation = Geocoder.search($ip)[0]
     @locationLongitude = @geocoderLocation.longitude
@@ -28,7 +28,7 @@ class HomeController < ApplicationController
     @songName = Song.find_by_id(@currentlyPlayingSong.id).songName
     @songLink = Song.find_by_id(@currentlyPlayingSong.id).link
     @reason = @currentlyPlayingArtist.relationship
-    $autoPlay = true
+    $numOfPlays += 1
   end
   
   def index

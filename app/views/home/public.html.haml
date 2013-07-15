@@ -140,7 +140,11 @@
         //Load an initial video into the player
         var link = "#{@songLink}"
         ytplayer.cueVideoById(link);
-        playVideo();
+        
+        if("#{$numOfPlays}" > 0)
+        {
+          playVideo();
+        }
       }
 
       // The "main method" of this sample. Called when someone clicks "Run".
@@ -223,4 +227,7 @@
         = simple_format(@songLyrics)
 
 #videoDiv Loading...
+
+number of songs played
+=$numOfPlays
         
