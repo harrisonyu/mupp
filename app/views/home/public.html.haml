@@ -209,7 +209,7 @@
           
     #dropdown
       =form_tag selectLocation_home_path, :method => 'post' do
-        =select_tag("selectedLocation",  options_for_select(["My Location", "San Francisco, CA", "Chicago, IL", "Seattle, WA","Paris, France" ]), include_blank: true)
+        =select_tag("selectedLocation",  options_for_select(["My Location", "San Francisco, CA", "Chicago, IL", "Seattle, WA","Detroit, MI","New York, NY", "London, UK", "Paris, France" ]), include_blank: true)
         =submit_tag "Select Location", :class => "btn"
     %br
     %br
