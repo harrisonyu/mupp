@@ -17,11 +17,11 @@ class HomeController < ApplicationController
       end
     end
     @locationName = Location.find_by_id(@location).locationName
-    @listOfArtists = Reason.find(:all, :conditions => ['locationID =?', @location])
+    @listOfArtists = Reason.find(:all, :conditions => ['"locationID" =?', @location])
     @currentlyPlayingArtist = @listOfArtists.sample(1)[0]
     @nameOfArtist = Artist.find_by_id(@currentlyPlayingArtist.artistID).artistName
     @biographyOfArtist = Artist.find_by_id(@currentlyPlayingArtist.artistID).biography
-    @listOfSongs = Song.find(:all, :conditions => ['artistID =? AND id !=?', @currentlyPlayingArtist.artistID, $lastSongId])
+    @listOfSongs = Song.find(:all, :conditions => ['"artistID" =? AND id !=?', @currentlyPlayingArtist.artistID, $lastSongId])
     @currentlyPlayingSong = @listOfSongs.sample(1)[0]
     $lastSongId = @currentlyPlayingSong.id
     @songLyrics = Song.find_by_id(@currentlyPlayingSong.id).lyrics
