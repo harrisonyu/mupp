@@ -13,7 +13,7 @@ class ArtistController < ApplicationController
     @artist.biography = params["biography"]
     @artist.save
 
-    redirect_to home_path and return
+    redirect_to data_path and return
   end
 
   def lastfmscrape
@@ -45,7 +45,7 @@ class ArtistController < ApplicationController
       newEntry.biography = x[1]
       newEntry.save
     end
-    redirect_to home_path and return
+    redirect_to data_path and return
   end
 
   def delete
@@ -60,6 +60,6 @@ class ArtistController < ApplicationController
       s.destroy
     end
     @artist.destroy
-    redirect_to home_path and return
+    redirect_to data_path and return
   end
 end

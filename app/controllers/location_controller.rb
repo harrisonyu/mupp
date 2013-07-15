@@ -15,7 +15,7 @@ class LocationController < ApplicationController
     @location.longitude = @geocoderLocation.longitude
     @location.latitude = @geocoderLocation.latitude
     @location.save
-    redirect_to home_path and return
+    redirect_to data_path and return
   end
 
   def lastfmscrape
@@ -44,7 +44,7 @@ class LocationController < ApplicationController
        newEntry.latitude = @geocoderLocation.latitude
        newEntry.save
     end
-    redirect_to home_path and return
+    redirect_to data_path and return
   end
 
   def delete
@@ -55,6 +55,6 @@ class LocationController < ApplicationController
       r.destroy
     end
     @location.destroy
-    redirect_to home_path and return
+    redirect_to data_path and return
   end
 end

@@ -15,7 +15,7 @@ class ReasonController < ApplicationController
     @reason.locationID = params["locationID"].to_i
     @reason.relationship = params["relationship"]
     @reason.save
-    redirect_to home_path and return
+    redirect_to data_path and return
   end
 
   def lastfmscrape
@@ -45,7 +45,7 @@ class ReasonController < ApplicationController
       newEntry.locationID = x[1]
       newEntry.save
     end
-    redirect_to home_path and return
+    redirect_to data_path and return
   end
 
   def updateform
@@ -55,13 +55,13 @@ class ReasonController < ApplicationController
     @id = params[:id]
     @relationship = params["relationship"]
     Reason.update(@id, :relationship => @relationship)
-    redirect_to home_path and return
+    redirect_to data_path and return
   end
 
   def delete
     @id = params[:id]
     @reason = Reason.find_by_id(@id)
     @reason.destroy
-    redirect_to home_path and return
+    redirect_to data_path and return
   end
 end

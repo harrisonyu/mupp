@@ -17,7 +17,7 @@ class SongController < ApplicationController
     @song.lyrics = params["lyrics"]
     @song.link = params["link"]
     @song.save
-    redirect_to home_path and return
+    redirect_to data_path and return
   end
 
   def lastfmscrape
@@ -66,7 +66,7 @@ class SongController < ApplicationController
       newEntry.lyrics = x[3]
       newEntry.save
     end
-    redirect_to home_path and return
+    redirect_to data_path and return
   end
 
   def lyricsupdateform
@@ -76,7 +76,7 @@ class SongController < ApplicationController
     @id = params[:id]
     @lyrics = params["lyrics"]
     Song.update(@id, :lyrics => @lyrics)
-    redirect_to home_path and return
+    redirect_to data_path and return
   end
 
   def linkupdateform
@@ -86,7 +86,7 @@ class SongController < ApplicationController
     @id = params[:id]
     @link = params["link"]
     Song.update(@id, :link => @link)
-    redirect_to home_path and return
+    redirect_to data_path and return
   end
 
   def songnameupdateform
@@ -96,7 +96,7 @@ class SongController < ApplicationController
     @id = params[:id]
     @songName = params["songName"]
     Song.update(@id, :songName => @songName)
-    redirect_to home_path and return
+    redirect_to data_path and return
   end
 
 
@@ -104,7 +104,7 @@ class SongController < ApplicationController
     @id = params[:id]
     @song = Song.find_by_id(@id)
     @song.destroy
-    redirect_to home_path and return
+    redirect_to data_path and return
   end
 
 end

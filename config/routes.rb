@@ -2,35 +2,35 @@ Mupp::Application.routes.draw do
 
   root :to => 'home#public'
 
-  match '/database' => 'home#index', :as => :home
+  match '/database' => 'data#index', :as => :data
 
-  get   '/home/song/new' => 'song#new', :as => :new_song
-  post  '/home/song/create' => 'song#create', :as => :create_song
-  get   '/home/song/lastfmscrape' => 'song#lastfmscrape', :as => :lastfmscrape_song
-  get   '/home/song/delete/:id' => 'song#delete', :as => :delete_song
-  put   '/home/song/lyricsupdate/:id' => 'song#lyricsupdate', :as => :lyricsupdate_song
-  get   '/home/song/lyricsupdateform/:id' => 'song#lyricsupdateform', :as => :lyricsupdateform_song
-  put   '/home/song/linkupdate/:id' => 'song#linkupdate', :as => :linkupdate_song
-  get   '/home/song/linkupdateform/:id' => 'song#linkupdateform', :as => :linkupdateform_song
-  put   '/home/song/songnameupdate/:id' => 'song#songnameupdate', :as => :songnameupdate_song
-  get   '/home/song/songnameupdateform/:id' => 'song#songnameupdateform', :as => :songnameupdateform_song
+  get   '/database/song/new' => 'song#new', :as => :new_song
+  post  '/database/song/create' => 'song#create', :as => :create_song
+  get   '/database/song/lastfmscrape' => 'song#lastfmscrape', :as => :lastfmscrape_song
+  get   '/database/song/delete/:id' => 'song#delete', :as => :delete_song
+  put   '/database/song/lyricsupdate/:id' => 'song#lyricsupdate', :as => :lyricsupdate_song
+  get   '/database/song/lyricsupdateform/:id' => 'song#lyricsupdateform', :as => :lyricsupdateform_song
+  put   '/database/song/linkupdate/:id' => 'song#linkupdate', :as => :linkupdate_song
+  get   '/database/song/linkupdateform/:id' => 'song#linkupdateform', :as => :linkupdateform_song
+  put   '/database/song/songnameupdate/:id' => 'song#songnameupdate', :as => :songnameupdate_song
+  get   '/database/song/songnameupdateform/:id' => 'song#songnameupdateform', :as => :songnameupdateform_song
 
-  get   '/home/location/new' => 'location#new', :as => :new_location
-  post  '/home/location/create' => 'location#create', :as => :create_location
-  get   '/home/location/lastfmscrape' => 'location#lastfmscrape', :as => :lastfmscrape_location
-  get   '/home/location/delete/:id' => 'location#delete', :as => :delete_location
+  get   '/database/location/new' => 'location#new', :as => :new_location
+  post  '/database/location/create' => 'location#create', :as => :create_location
+  get   '/database/location/lastfmscrape' => 'location#lastfmscrape', :as => :lastfmscrape_location
+  get   '/database/location/delete/:id' => 'location#delete', :as => :delete_location
 
-  get   '/home/reason/new' => 'reason#new', :as => :new_reason
-  post  '/home/reason/create' => 'reason#create', :as => :create_reason
-  get   '/home/reason/lastfmscrape' => 'reason#lastfmscrape', :as => :lastfmscrape_reason
-  get   '/home/reason/delete/:id' => 'reason#delete', :as => :delete_reason
-  put   '/home/reason/update/:id' => 'reason#update', :as => :update_reason
-  get   '/home/reason/updateform/:id' => 'reason#updateform', :as => :updateform_reason
+  get   '/database/reason/new' => 'reason#new', :as => :new_reason
+  post  '/database/reason/create' => 'reason#create', :as => :create_reason
+  get   '/database/reason/lastfmscrape' => 'reason#lastfmscrape', :as => :lastfmscrape_reason
+  get   '/database/reason/delete/:id' => 'reason#delete', :as => :delete_reason
+  put   '/database/reason/update/:id' => 'reason#update', :as => :update_reason
+  get   '/database/reason/updateform/:id' => 'reason#updateform', :as => :updateform_reason
 
-  get   '/home/artist/new' => 'artist#new', :as => :new_artist
-  post  '/home/artist/create' => 'artist#create', :as => :create_artist
-  get   '/home/artist/lastfmscrape' => 'artist#lastfmscrape', :as => :lastfmscrape_artist
-  get   '/home/artist/delete/:id' => 'artist#delete', :as => :delete_artist
+  get   '/database/artist/new' => 'artist#new', :as => :new_artist
+  post  '/database/artist/create' => 'artist#create', :as => :create_artist
+  get   '/database/artist/lastfmscrape' => 'artist#lastfmscrape', :as => :lastfmscrape_artist
+  get   '/database/artist/delete/:id' => 'artist#delete', :as => :delete_artist
 
   post  '/home/selectLocation' => 'home#selectLocation', :as => :selectLocation_home
   # The priority is based upon order of creation:
