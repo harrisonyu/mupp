@@ -1310,7 +1310,11 @@ td
 }
 #dropdown
 {
-  width: 20%;
+  border-radius: 15px;
   margin-left: auto;
   margin-right: auto;
+  width: 15%;
+  height: auto;
+  line-height: 20px;
+  text-align: center;
 }
