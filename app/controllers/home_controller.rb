@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   $lastSongId = 0
-  $ip = request.remote_ip
+  $ip = "Kansas City, MO"
   $numOfPlays = -1
   def public
     @geocoderLocation = Geocoder.search($ip)[0]
