@@ -6,6 +6,7 @@ class SongController < ApplicationController
 
   def new
     @song = Song.new
+    @artists = Artist.all
   end
 
   def create
@@ -67,6 +68,37 @@ class SongController < ApplicationController
     end
     redirect_to home_path and return
   end
+
+  def lyricsupdateform
+  end
+  
+  def lyricsupdate
+    @id = params[:id]
+    @lyrics = params["lyrics"]
+    Song.update(@id, :lyrics => @lyrics)
+    redirect_to home_path and return
+  end
+
+  def linkupdateform
+  end
+  
+  def linkupdate
+    @id = params[:id]
+    @link = params["link"]
+    Song.update(@id, :link => @link)
+    redirect_to home_path and return
+  end
+
+  def songnameupdateform
+  end
+  
+  def songnameupdate
+    @id = params[:id]
+    @songName = params["songName"]
+    Song.update(@id, :songName => @songName)
+    redirect_to home_path and return
+  end
+
 
   def delete
     @id = params[:id]

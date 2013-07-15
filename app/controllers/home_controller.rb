@@ -43,7 +43,7 @@ class HomeController < ApplicationController
       redirect_to root_path and return
     end
     if params["selectedLocation"] == "My Location"
-      $ip = "San Francisco"#request.remote_ip
+      $ip = request.remote_ip
     else
       $ip = params["selectedLocation"]
     end

@@ -59,6 +59,9 @@
       %th Artist Name:
       %th Link:
       %th Lyrics:
+      %th Update Song Name:
+      %th Update Link:
+      %th Update Lyrics:
       %th Delete
   %tbody
     - @songs.each do |s|
@@ -73,6 +76,12 @@
           = s.link
         %td 
           = simple_format(s.lyrics)
+        %td
+          = link_to "UpdateSongName", songnameupdateform_song_path(s.id), class: "btn"
+        %td
+          = link_to "UpdateLink", linkupdateform_song_path(s.id), class: "btn"
+        %td
+          = link_to "UpdateLyrics", lyricsupdateform_song_path(s.id), class: "btn"
         %td
           = link_to "Delete", delete_song_path(s.id), class: "btn"
   %br

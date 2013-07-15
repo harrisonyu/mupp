@@ -51,6 +51,14 @@ class ArtistController < ApplicationController
   def delete
     @id = params[:id]
     @artist = Artist.find_by_id(@id)
+    @reasons = Reason.find(:all, :conditions => ['artistID =?', @artist])
+    @reasons.each do |r|
+      r.destroy
+    end
+    @songs = Song.find(:all, :conditions => ['artistID =?', @artist])
+    @songs.each do |s|
+      s.destroy
+    end
     @artist.destroy
     redirect_to home_path and return
   end

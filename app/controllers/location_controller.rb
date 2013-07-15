@@ -50,6 +50,10 @@ class LocationController < ApplicationController
   def delete
     @id = params[:id]
     @location = Location.find_by_id(@id)
+    @reasons = Reason.find(:all, :conditions => ['locationID =?', @location])
+    @reasons.each do |r|
+      r.destroy
+    end
     @location.destroy
     redirect_to home_path and return
   end

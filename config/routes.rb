@@ -8,6 +8,12 @@ Mupp::Application.routes.draw do
   post  '/home/song/create' => 'song#create', :as => :create_song
   get   '/home/song/lastfmscrape' => 'song#lastfmscrape', :as => :lastfmscrape_song
   get   '/home/song/delete/:id' => 'song#delete', :as => :delete_song
+  put   '/home/song/lyricsupdate/:id' => 'song#lyricsupdate', :as => :lyricsupdate_song
+  get   '/home/song/lyricsupdateform/:id' => 'song#lyricsupdateform', :as => :lyricsupdateform_song
+  put   '/home/song/linkupdate/:id' => 'song#linkupdate', :as => :linkupdate_song
+  get   '/home/song/linkupdateform/:id' => 'song#linkupdateform', :as => :linkupdateform_song
+  put   '/home/song/songnameupdate/:id' => 'song#songnameupdate', :as => :songnameupdate_song
+  get   '/home/song/songnameupdateform/:id' => 'song#songnameupdateform', :as => :songnameupdateform_song
 
   get   '/home/location/new' => 'location#new', :as => :new_location
   post  '/home/location/create' => 'location#create', :as => :create_location
