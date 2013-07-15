@@ -64,6 +64,10 @@
           newState = "playing";
         else if(newState == 2)
           newState = "paused";
+        else if(newState == 3)
+          newState = "buffering";
+        else if(newState == 5)
+          newState = "video cued, probably broken";
         else if(newState == -1)
           newState = "audio loaded";
 
