@@ -188,6 +188,7 @@
     %br
 
     #info.bar-nice-look
+      %br
       %button#play{:href => "javascript:void(0);", :onclick => "playVideo();"}
       %button#pause{:href => "javascript:void(0);", :onclick => "pauseVideo();"}
       %button#next{:href => "javascript:void(0);", :onclick => "nextVideo();"}
@@ -197,13 +198,13 @@
         = @songName
       %hr
       #videoInfo
-        %p
-          Player state:
-          %span#playerState --
-    
+        Player state:
+        %span#playerState --
+      %br
+          
     #dropdown
       =form_tag selectLocation_home_path, :method => 'post' do
-        =select_tag("selectedLocation", "<option>My Location</option> <option>Chicago, IL</option> <option> San Francisco, CA </option>".html_safe, include_blank: true)
+        =select_tag("selectedLocation",  options_for_select(["My Location", "San Francisco, CA", "Chicago, IL", "Seattle, WA","Paris, France" ]), include_blank: true)
         =submit_tag "Select Location", :class => "btn"
     %br
     %br
