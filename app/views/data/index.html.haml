@@ -34,6 +34,7 @@
       %th Location Name:
       %th Longitude:
       %th Latitude:
+      %th Update Location Name:
       %th Delete
   %tbody
     - @locations.each do |l|
@@ -46,6 +47,8 @@
           = l.longitude
         %td 
           = l.latitude
+        %td
+          = link_to "UpdateLocationName", updateform_location_path(l.id), class: "btn"
         %td
           = link_to "Delete", delete_location_path(l.id), class: "btn"
   %br

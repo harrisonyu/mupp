@@ -19,6 +19,8 @@ Mupp::Application.routes.draw do
   post  '/database/location/create' => 'location#create', :as => :create_location
   get   '/database/location/lastfmscrape' => 'location#lastfmscrape', :as => :lastfmscrape_location
   get   '/database/location/delete/:id' => 'location#delete', :as => :delete_location
+  put   '/database/location/update/:id' => 'location#update', :as => :update_location
+  get   '/database/location/updateform/:id' => 'location#updateform', :as => :updateform_location
 
   get   '/database/reason/new' => 'reason#new', :as => :new_reason
   post  '/database/reason/create' => 'reason#create', :as => :create_reason

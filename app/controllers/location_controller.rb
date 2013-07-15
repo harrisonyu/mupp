@@ -47,6 +47,19 @@ class LocationController < ApplicationController
     redirect_to data_path and return
   end
 
+  def updateform
+  end
+  
+  def update
+    @id = params[:id]
+    @locationname = params["locationName"]
+    @location = Geocoder.search(@locationname)[0]
+    Location.update(@id, :locationName => @location.address)
+    Location.update(@id, :longitude => @location.longitude)
+    Location.update(@id, :latitude => @location.latitude)
+    redirect_to data_path and return
+  end
+
   def delete
     @id = params[:id]
     @location = Location.find_by_id(@id)
